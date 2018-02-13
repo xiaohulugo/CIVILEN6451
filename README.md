@@ -8,7 +8,8 @@ Prerequisites:
 
 Usage:
 ---
-1. run main.m
+1. download
+2. run main.m
 
 Performance:
 ---
