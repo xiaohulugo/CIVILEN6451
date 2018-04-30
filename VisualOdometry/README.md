@@ -31,7 +31,7 @@ https://vision.in.tum.de/data/datasets/rgbd-dataset/download
 (2) results: 700 frames in 10 minutes
 ![image](https://github.com/xiaohulugo/images/blob/master/vo1.png)
 
-(3) failure case: the recult depends on the tracking process, if tracking fails, the vo fails
+(3) failure case: the recult depends on the tracking process, if tracking fails, the vo fails. The tracking process often fails when the are motion blur.
 ![image](https://github.com/xiaohulugo/images/blob/master/vo_failure.png)
 
 Feel free to correct my code, if you spotted the mistakes. You are also welcomed to Email me: fangzelu@gmail.com
