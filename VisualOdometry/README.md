@@ -3,7 +3,7 @@ Course work for CIVILEN 6451
 
 Prerequisites:
 ---
-1. Matlab (successfully run on OpenCV2.4.13)
+1. C++ (successfully run on OpenCV2.4.13)
 2. Only the main code of vo is published
 
 Usage:
