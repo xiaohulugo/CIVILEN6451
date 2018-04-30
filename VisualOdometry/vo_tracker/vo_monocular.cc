@@ -131,49 +131,6 @@ namespace objectsfm {
 					}
 				}
 
-				// draw tracked points
-				//if (false && is_sys_initialized_)
-				if (0)
-				{
-					for (size_t i = 0; i < trackers_.size(); i++)
-					{
-						std::string path_img1 = options_.output_fold + std::to_string(i) + "_init.jpg";
-						std::string path_img2 = options_.output_fold + std::to_string(i) + "_cur.jpg";
-						std::string path_img3 = options_.output_fold + std::to_string(i) + "_pre.jpg";
-						cv::Mat img1 = trackers_[i]->frame_init_.clone();
-						cv::Mat img2 = frame_rgb.clone();
-						cv::Mat img3 = frame_rgb.clone();
-
-						for (size_t j = 0; j < trackers_[i]->pts_pre_.size(); j++)
-						{
-							cv::circle(img3, trackers_[i]->pts_pre_[j], 1, cv::Scalar(0, 0, 255), 2);
-						}
-
-						for (size_t j = 0; j < trackers_[i]->pts_cur_.size(); j++)
-						{
-							if (trackers_[i]->pts_cur_[j].x >= 0 && trackers_[i]->pts_cur_[j].y >= 0)
-							{
-								// draw
-								if (trackers_[i]->pts_3d_.find(j) != trackers_[i]->pts_3d_.end())
-								{
-									cv::circle(img1, trackers_[i]->pts_init_[j], 1, cv::Scalar(0, 0, 255), 2);
-									cv::line(img1, trackers_[i]->pts_init_[j], trackers_[i]->pts_cur_[j], cv::Scalar(255, 0, 0), 2);
-									cv::circle(img2, trackers_[i]->pts_cur_[j], 1, cv::Scalar(0, 0, 255), 2);
-								}
-								else
-								{
-									cv::circle(img1, trackers_[i]->pts_init_[j], 1, cv::Scalar(0, 0, 255), 2);
-									cv::line(img1, trackers_[i]->pts_init_[j], trackers_[i]->pts_cur_[j], cv::Scalar(255, 0, 0), 2);
-									cv::circle(img2, trackers_[i]->pts_cur_[j], 1, cv::Scalar(255, 0, 0), 2);
-								}
-							}
-						}
-						cv::imwrite(path_img1, img1);
-						cv::imwrite(path_img2, img2);
-						cv::imwrite(path_img3, img3);
-					}
-				}
-
 				// localize the frame
 				RTPose pose_cur;
 				std::vector<int> pts3d_ids;
@@ -196,9 +153,6 @@ namespace objectsfm {
 					add_new_frame = true;
 				}
 
-				std::string path_pts_p = options_.output_fold + std::to_string(p) + "cams_pts.txt";
-				WriteCameraPointsOut(path_pts_p);
-
 				if(add_new_frame)
 				{
 					if (!is_sys_initialized_)
@@ -207,18 +161,12 @@ namespace objectsfm {
 						{
 							continue;
 						}
-						std::string path_seed = options_.output_fold + "//cams_pts_seed.txt";
-						WriteCameraPointsOut(path_seed);
-
 						is_sys_initialized_ = true;
 					}
 					else 
 					{
 						AddKeyFrme(frame, pose_cur, pts3d_ids, pts2d);
 					}
-
-					std::string path_pts = options_.output_fold + "cams_pts_key" + std::to_string(cams_.size()) + ".txt";
-					WriteCameraPointsOut(path_pts);
 				}
 			}
 		}
