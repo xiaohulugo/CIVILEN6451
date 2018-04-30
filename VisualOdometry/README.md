@@ -15,6 +15,7 @@ Usage:
 Performance:
 ---
 1. camera calibration
+
 (1) input chess borad image
 ![image](https://github.com/xiaohulugo/images/blob/master/calib2.png)
 (2) detected corners
@@ -22,10 +23,15 @@ Performance:
 (3) draw the 3d coordinate onto the image
 ![image](https://github.com/xiaohulugo/images/blob/master/calib3.png)
 
-2. visual odometry
+2. visual odometry: it's just a very simple version, there are still many bugs
+
 (1) dataset: TUM Visin Group, fr3/long_office_household dataset in the following link
 https://vision.in.tum.de/data/datasets/rgbd-dataset/download
+
 (2) results: 700 frames in 10 minutes
 ![image](https://github.com/xiaohulugo/images/blob/master/vo1.png)
+
+(3) failure case: the recult depends on the tracking process, if tracking fails, the vo fails
+![image](https://github.com/xiaohulugo/images/blob/master/vo_failure.png)
 
 Feel free to correct my code, if you spotted the mistakes. You are also welcomed to Email me: fangzelu@gmail.com
